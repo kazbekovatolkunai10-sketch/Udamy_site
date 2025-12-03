@@ -1,10 +1,14 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import (UserProFileAPIView, UserProFileSimpleAPIView, CategoryViewSet, SubCategoryViewSet, LessonListAPIView,
+from .views import (UserProFileAPIView, UserProFileSimpleAPIView, CategoryViewSet, SubCategoryViewSet,
+                    LessonListAPIView,
                     LessonDetailAPIView, CourseAPIView, CourseListAPIView, CourseDetailAPIView,
-                    AssignmentListAPIView, AssignmentDetailAPIView, ExamListAPIView, ExamDetailAPIView, QuestionListAPIView,
-                    QuestionDetailAPIView, OptionListAPIView, OptionDetailAPIView, CertificateListAPIVIew, CertificateDetailAPIVIew,
-                    ReviewListAPIView, ReviewDetailView, CartViewSet, CartItemViewSet)
+                    AssignmentListAPIView, AssignmentDetailAPIView, ExamListAPIView, ExamDetailAPIView,
+                    QuestionListAPIView,
+                    QuestionDetailAPIView, OptionListAPIView, OptionDetailAPIView, CertificateListAPIVIew,
+                    CertificateDetailAPIVIew,
+                    ReviewListAPIView, ReviewDetailView, CartViewSet, CartItemViewSet, RegisterView, CustomLoginView,
+                    LogoutView)
 
 router = routers.SimpleRouter()
 router.register(r'category', CategoryViewSet)
@@ -14,6 +18,9 @@ router.register(r'cart_item', CartItemViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('user/<int:pk>/', UserProFileAPIView.as_view(), name='user'),
     path('user/', UserProFileSimpleAPIView.as_view(), name='user_simple'),
     path('lesson/', LessonListAPIView.as_view(), name='lesson-list'),

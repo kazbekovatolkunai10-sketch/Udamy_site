@@ -3,18 +3,19 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 class UserProFile(AbstractUser):
-    username = models.CharField(max_length=60, unique=True)
+    # username = models.CharField(max_length=60, unique=True)
     ROLE_CHOICES = (
         ('клиент', 'клиент'),
         ('преподаватель', 'преподаватель'),
     )
     role = models.CharField(max_length=34, choices=ROLE_CHOICES, default='клиент')
-    full_name = models.CharField(max_length=100)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_picture/', null=True, blank=True)
-    bio = models.TextField()
+    bio = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.username}, {self.role}'
+        return f'{self.first_name}, {self.last_name}'
+
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100)

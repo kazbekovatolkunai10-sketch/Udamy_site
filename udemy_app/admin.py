@@ -3,22 +3,9 @@ from .models import (UserProFile,Category, SubCategory, Lesson, Course, Assignme
                      Option, Certificate, Review, Cart, CartItem)
 from modeltranslation.admin import TranslationAdmin, TranslationInlineModelAdmin
 
-class ReviewInline(admin.TabularInline):
-    model = Review
-    extra = 1
-
-@admin.register(UserProFile)
-class UserProFileAdmin(TranslationAdmin):
-    inlines = [ReviewInline]
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
+# class ReviewInline(admin.TabularInline):
+#     model = Review
+#     extra = 1
 
 class SubCategoryInline(admin.TabularInline, TranslationInlineModelAdmin):
     model = SubCategory

@@ -2,9 +2,6 @@ from .models import (UserProFile, Category, SubCategory, Lesson,
                      Course, Assignment, Exam, Questions, Option)
 from modeltranslation.translator import TranslationOptions,register
 
-@register(UserProFile)
-class UserProFileTranslationOptions(TranslationOptions):
-    fields = ('username', 'full_name', 'bio')
 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
