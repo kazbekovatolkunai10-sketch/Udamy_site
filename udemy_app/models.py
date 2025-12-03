@@ -59,7 +59,7 @@ class Assignment(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     due_date = models.DateField()
-    course = models.URLField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     students = models.ForeignKey(UserProFile, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -106,7 +106,7 @@ class Certificate(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(UserProFile, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_review')
     rating = models.PositiveSmallIntegerField(validators=[MaxValueValidator(1), MinValueValidator(5)])
     comment = models.TextField()
 
